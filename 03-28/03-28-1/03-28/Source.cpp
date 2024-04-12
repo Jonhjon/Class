@@ -2,91 +2,70 @@
 using namespace std;
 typedef struct Node {
     string data;
-    struct Node* next=NULL;
+    struct Node* next = NULL;
 } Node;
-Node* push(Node* head,Node**end,string data) {
+Node* push(Node* head,string data) {
     Node* New_Node = new Node();
     New_Node->data = data;
-    New_Node->next = NULL;
-    if (head==NULL)
-    {
-       // (*end)->next = New_Node;
-        (*end) = New_Node;
-        head = New_Node;
-    }
-    else
-    {
-        (*end)->next = New_Node;
-        (*end) = New_Node;
-    }
+    New_Node->next = head;
+    //head = New_Node;
+    return New_Node;
+}
+Node* POP(Node* head) {
+    Node* temp = head;
+    head = head->next;
+    cout << "POP : " << temp->data<<endl;
+    free(temp);
     return head;
 }
-Node* POP(Node** head, Node* end) {
-    Node* temp = *head;
-    if (temp->next==NULL)
-    {
-        (*head) = NULL;
-        free(temp);
-    }
-    else {
-        while (temp != NULL)
-        {
-            if (temp->next == end) {
-                cout << "POP : " << temp->next->data << endl;
-                end = temp;
-                end->next = NULL;
-                free(temp->next);
-                return end;
-            }
-            temp = temp->next;
-        }
-    }
-}
 void Print_list(Node* ptr) {
-    while (ptr!=NULL) {
-        cout << ptr->data << " -> ";
+    if (ptr == NULL)
+        return;
+    cout << ptr->data;
+    ptr = ptr->next;
+    while (ptr != NULL) {
+        cout << " -> " << ptr->data ;
         ptr = ptr->next;
     }
 }
 int main() {
-    int choice = 0,stack=0;
+    int choice = 0, stack = 0;
     string str = "";
-    Node* head = NULL;
-    Node* end = NULL;
+    Node* ptr=NULL;
 
-    while (choice!=-1)
+    while (choice != -1)
     {
-        cout << "(1)PUSH (2)POP (-1)Â÷¶} : ";
+        cout << "(1)PUSH (2)POP (-1)é›¢é–‹ : ";
         cin >> choice;
         switch (choice) {
         case 1://push
-            if (stack==5)
+            if (stack == 5)
             {
                 cout << "Stack is full\n";
                 break;
             }
             cout << "PUSH :";
             cin >> str;
-            head=push(head, &end,str);
+            ptr = push(ptr,str);
             stack++;
             break;
         case 2://pop
-            if (stack==0)
+            if (stack == 0)
             {
-                cout << "Stack is Empty!!!!\n"; 
+                cout << "Stack is Empty!!!!\n";
                 break;
             }
-            end = POP(&head, end);
+            ptr = POP(ptr);
             stack--;
             break;
         case -1:
             break;
         default:
-            cout << "¿é¤J¿ù»~!!!!\n";
+            cout << "è¼¸å…¥éŒ¯èª¤!!!!\n";
             break;
         }
-        Print_list(head);
-        cout << "¥Ø«estack(" << stack << "/5)\n";
+        Print_list(ptr);
+        cout << "\nç›®å‰stack(" << stack << "/5)\n";
     }
     return 0;
 }
