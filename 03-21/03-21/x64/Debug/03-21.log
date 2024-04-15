@@ -1,0 +1,6 @@
+﻿  Source.cpp
+C:\Users\TCUMI\Desktop\資結\03-21\03-21\Source.cpp(68,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\TCUMI\Desktop\資結\03-21\03-21\Source.cpp(70,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\TCUMI\Desktop\資結\03-21\03-21\Source.cpp(74,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\TCUMI\Desktop\資結\03-21\03-21\Source.cpp(79,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  03-21.vcxproj -> C:\Users\TCUMI\Desktop\資結\03-21\x64\Debug\03-21.exe
