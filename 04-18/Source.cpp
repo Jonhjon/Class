@@ -9,12 +9,12 @@ typedef struct node {
 	string sym;
 	struct node* Next;
 }node;
-node* Add(node* ptr, int num, int pow,string sym) {
+node* Add(node* ptr, int num, int pow, string sym) {
 	node* Add = new node();
 	node* temp = ptr;
-	if (sym =="-")
+	if (sym == "-")
 	{
-		num *=-1;
+		num *= -1;
 	}
 	Add->num = num;
 	Add->pow = pow;
@@ -52,76 +52,48 @@ void Print_List(node* current) {
 	{
 		if (current->pow == 0)
 		{
-			cout << " + " << current->num << " ";
+			cout << " "<< current->sym<<" " << abs(current->num) << " ";
 		}
 		else {
-			cout << " " << current->sym << abs(current->num) << "x^" << current->pow;
+			cout << " " << current->sym << " " << abs(current->num) << "x^" << current->pow;
 		}
 		current = current->Next;
 	}
 }
-node* readfile(node* ptr,string str) {
-	//ifstream file;
+node* readfile(node* ptr, string str) {
 	int num = 0, pow = 0;
-	string sym=" ";
-	//getline(file, str);
+	string sym = " ";
 	for (int i = 0; i < str.length(); i++)
 	{
-		if (str[i]=='+'||str[i]=='-')
+		if (str[i] == '+' || str[i] == '-')
 		{
 			sym = str[i];
 		}
 		else if (isdigit(str[i]) && isdigit(str[i + 1]))
 		{
 			num = (str[i] - '0') * 10 + str[i + 1] - '0';
-			//check2 = 1;
 			i++;
-			/*pre = str[i];
-			check = 1;*/
 		}
 		else if (isdigit(str[i]))
 		{
 			num = str[i] - '0';
-			//check2 = 1;
-			/*temp = str[i];
-			check++;*/
 		}
 		else if (str[i] == 'x' && str[i + 1] == '^')
 		{
 			if (isdigit(str[i + 2]) && isdigit(str[i + 3]))
 			{
 				pow = (str[i + 2] - '0') * 10 + str[i + +3] - '0';
-				//check2 = 1;
-				i+=3;
-				/*pre = str[i];
-				check = 1;*/
+				i += 3;
 			}
 			else if (isdigit(str[i + 2]))
 			{
 				pow = str[i + 2] - '0';
-				i+=2;
-				//check2 = 1;
-				/*temp = str[i];
-				check++;*/
+				i += 2;
 			}
-			/*if (check == 2)
-			{
-				num = stoi(pre) * 10 + stoi(temp);
-				sym = " ";
-			}
-			else 	num = stoi(pre);
-			check = 0;*/
 		}
 		else if (str[i] == ' ' && (str[i + 1] == '+' || str[i + 1] == '-'))
 		{
-			/*if (check == 2)
-			{
-				pow = stoi(pre) * 10 + stoi(temp);
-			}
-			else {
-				pow = stoi(pre);
-			}*/
-			//check = 0;
+			
 			ptr = Add(ptr, num, pow, sym);
 			num = 0;
 			pow = 0;
@@ -134,7 +106,7 @@ node* Insert(node* A, node* B) {
 	node* result = NULL;
 	node* cur_A = A;
 	node* cur_b = B;
-	while (cur_A!=NULL&&cur_b!=NULL)
+	while (cur_A != NULL && cur_b != NULL)
 	{
 		if (cur_A->pow > cur_b->pow)
 		{
@@ -148,7 +120,7 @@ node* Insert(node* A, node* B) {
 		else
 		{
 			int sum = cur_A->num + cur_b->num;
-			if (sum!=0)
+			if (sum != 0)
 			{
 				result = Add(result, sum, cur_A->pow, sum < 0 ? "-" : "+");
 			}
@@ -156,12 +128,12 @@ node* Insert(node* A, node* B) {
 			cur_b = cur_b->Next;
 		}
 	}
-	while (cur_A!=NULL)
+	while (cur_A != NULL)
 	{
 		result = Add(result, cur_A->num, cur_A->pow, cur_A->sym);
 		cur_A = cur_A->Next;
 	}
-	while (cur_b!=NULL)
+	while (cur_b != NULL)
 	{
 		result = Add(result, cur_b->num, cur_b->pow, cur_b->sym);
 		cur_b = cur_b->Next;
@@ -170,7 +142,7 @@ node* Insert(node* A, node* B) {
 }
 node* multi(node* A, node* B) {
 	node* result = NULL, * cur_A = A, * cur_B = B;
-	while (cur_A!=NULL)
+	while (cur_A != NULL)
 	{
 		cur_B = B;
 		while (cur_B != NULL) {
@@ -183,7 +155,7 @@ node* multi(node* A, node* B) {
 }
 void len(node* ptr) {
 	int count = 0;
-	while (ptr!=NULL)
+	while (ptr != NULL)
 	{
 		count++;
 		ptr = ptr->Next;
@@ -204,7 +176,7 @@ node* Invert(node* ptr) {
 		// 複製資料
 		temp->num = ptr->num;
 		temp->pow = ptr->pow;
-
+		temp->sym = ptr->sym;
 		// 將新節點插入到反轉的鏈表中
 		temp->Next = result;
 		result = temp;
@@ -215,11 +187,11 @@ node* Invert(node* ptr) {
 	return result;
 }
 void new_print(node* ptr) {
-	cout << ptr->num << "," << ptr->pow; 
+	cout << ptr->sym << ptr->num << "," << ptr->pow;
 	ptr = ptr->Next;
-	while (ptr!=NULL)
+	while (ptr != NULL)
 	{
-		cout <<" -> " << ptr->num << "," << ptr->pow;
+		cout << " -> " <<ptr->sym << ptr->num << "," << ptr->pow;
 		ptr = ptr->Next;
 	}
 }
@@ -239,14 +211,14 @@ int main() {
 	}
 
 	getline(file, str);
-	head_A = readfile(head_A,str);
+	head_A = readfile(head_A, str);
 	cout << "a =";
 	Print_List(head_A);
 
 
 
 	getline(file, str);
-	head_b = readfile(head_b,str);
+	head_b = readfile(head_b, str);
 	cout << "\nb =";
 	Print_List(head_b);
 
