@@ -1,0 +1,8 @@
+﻿  Source.cpp
+C:\Users\張銘傑\Desktop\2下\程式規劃2 上機\05-18-上機\05-18-3\05-18-3\Source.cpp(14,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\張銘傑\Desktop\2下\程式規劃2 上機\05-18-上機\05-18-3\05-18-3\Source.cpp(21,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\張銘傑\Desktop\2下\程式規劃2 上機\05-18-上機\05-18-3\05-18-3\Source.cpp(24,5): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\張銘傑\Desktop\2下\程式規劃2 上機\05-18-上機\05-18-3\05-18-3\Source.cpp(32,7): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\張銘傑\Desktop\2下\程式規劃2 上機\05-18-上機\05-18-3\05-18-3\Source.cpp(45,5): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\張銘傑\Desktop\2下\程式規劃2 上機\05-18-上機\05-18-3\05-18-3\Source.cpp(53,7): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  03-14.vcxproj -> C:\Users\張銘傑\Desktop\3下\資結上機\03-14\x64\Debug\03-14.exe
