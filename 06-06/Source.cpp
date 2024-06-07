@@ -3,9 +3,9 @@
 #include<fstream>
 #include <limits.h>
 using namespace std;
-#define len 10
+#define len 5
 
-void Print_matrix(int matrix[][len],int line) {
+void Print_matrix(int matrix[][len], int line) {
 	for (int i = 0; i < line; i++)
 	{
 		for (int j = 0; j < line; j++)
@@ -19,7 +19,7 @@ void Print_matrix(int matrix[][len],int line) {
 	}
 }
 
-int MinDistance(int distance[], bool vist[],int line) {
+int MinDistance(int distance[], bool vist[], int line) {
 	int min = INT_MAX, min_index = 0;
 
 	for (int i = 0; i < line; i++)
@@ -30,7 +30,24 @@ int MinDistance(int distance[], bool vist[],int line) {
 
 	return min_index;
 }
-void dijkstra(int matrix[len][len], int start,int line) {
+void Print_parent(int parent[], int j) {
+	if (parent[j] == j)
+		return;
+	Print_parent(parent, parent[j]);
+	cout << " -> " << char(j+'A');
+	return;
+}
+
+void Print_solution(int distance[], int parent[], int start) {
+	for (int i = 1; i < len; i++)
+	{
+		cout << char(start + 'A') << " -> " << char('A'+i) << " :  " << distance[i] << ", A";
+		Print_parent(parent, i);
+		cout << endl;
+	}
+}
+
+void dijkstra(int matrix[len][len], int start, int line) {
 	int distance[len] = { 0 };
 	bool vist[len] = { false };
 	int parent[len] = { 0 };
@@ -40,33 +57,28 @@ void dijkstra(int matrix[len][len], int start,int line) {
 		parent[i] = i;
 	}
 
-	distance[start]=0;
+	distance[start] = 0;
 
 	for (int i = 0; i < line; i++)
 	{
-		int u = MinDistance(distance, vist,line);
+		int u = MinDistance(distance, vist, line);
 
 		vist[u] = true;
 
 		for (int j = 0; j < line; j++)
 		{
-			if (!vist[j] && matrix[u][j]!=-1  && distance[u]!= INT_MAX && (distance[u] + matrix[u][j] < distance[j]))
+			if (!vist[j] && matrix[u][j] != -1 && distance[u] != INT_MAX && (distance[u] + matrix[u][j] < distance[j]))
 			{
 				distance[j] = distance[u] + matrix[u][j];
 				parent[j] = u;
 			}
 		}
-
 		for (int i = 0; i < line; i++)
 		{
 			if (distance[i] == INT_MAX)
 			{
 				printf("(-1,%c) ", parent[i] + 'A');
 			}
-			/*else if (parent[i]==-1)
-			{
-				printf("(-1,A) ", distance[i]);
-			}*/
 			else
 			{
 				printf("(%d,%c) ", distance[i], parent[i] + 'A');
@@ -74,12 +86,8 @@ void dijkstra(int matrix[len][len], int start,int line) {
 		}
 		cout << endl;
 	}
-
-
+	Print_solution(distance,parent, 0);
 }
-
-
-
 
 
 int main() {
@@ -91,7 +99,7 @@ int main() {
 		cout << "file erro!!\n";
 		return 0;
 	}
-	int line = 0,num=0;
+	int line = 0, num = 0;
 	file >> line;
 	for (int i = 0; i < line; i++)
 	{
@@ -104,7 +112,7 @@ int main() {
 	file.close();
 	Print_matrix(matrix, line);
 	int start = 0;
-
-	dijkstra(matrix, start,line);
+	cout << endl;
+	dijkstra(matrix, start, line);
 	return 0;
 }
