@@ -21,13 +21,11 @@ void Print_matrix(int matrix[][len], int line) {
 
 int MinDistance(int distance[], bool vist[], int line) {
 	int min = INT_MAX, min_index = 0;
-
 	for (int i = 0; i < line; i++)
 	{
 		if (!vist[i] && distance[i] <= min)
 			min = distance[i], min_index = i;
 	}
-
 	return min_index;
 }
 void Print_parent(int parent[], int j) {
@@ -39,11 +37,14 @@ void Print_parent(int parent[], int j) {
 }
 
 void Print_solution(int distance[], int parent[], int start) {
-	for (int i = 1; i < len; i++)
+	for (int i = 0; i < len; i++)
 	{
-		cout << char(start + 'A') << " -> " << char('A'+i) << " :  " << distance[i] << ", A";
-		Print_parent(parent, i);
-		cout << endl;
+		if (i!=start)
+		{
+			cout << char(start + 'A') << " -> " << char('A' + i) << " :  " << distance[i] << ", "<< char(start + 'A');
+			Print_parent(parent, i);
+			cout << endl;
+		}
 	}
 }
 
@@ -61,13 +62,13 @@ void dijkstra(int matrix[len][len], int start, int line) {
 
 	for (int i = 0; i < line; i++)
 	{
-		int u = MinDistance(distance, vist, line);
+		int u = MinDistance(distance, vist, line);	
 
 		vist[u] = true;
 
 		for (int j = 0; j < line; j++)
 		{
-			if (!vist[j] && matrix[u][j] != -1 && distance[u] != INT_MAX && (distance[u] + matrix[u][j] < distance[j]))
+			if (!vist[j] && matrix[u][j] != -1 && (distance[u] + matrix[u][j] < distance[j]))
 			{
 				distance[j] = distance[u] + matrix[u][j];
 				parent[j] = u;
@@ -86,7 +87,7 @@ void dijkstra(int matrix[len][len], int start, int line) {
 		}
 		cout << endl;
 	}
-	Print_solution(distance,parent, 0);
+	Print_solution(distance,parent, start);
 }
 
 
