@@ -36,7 +36,7 @@ void Free(edg* n) {
 	}
 }
 void Print_graph(Graph graph[], int num) {
-	cout << "matrix : \n";
+	cout << "\n\nmatrix : \n";
 	for (int i = 0; i < num; i++)
 	{
 		edg* start = graph[i].edg_start;
@@ -53,6 +53,7 @@ void Print_graph(Graph graph[], int num) {
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 bool any_way_forward(Graph graph[], int side) {
 	for (int i = 0; i < len; i++)
@@ -71,7 +72,7 @@ bool any_way_forward(Graph graph[], int side) {
 }
 
 edg* Delete_vect(Graph graph[], int side) {
-	
+
 	edg* start = graph[side].edg_start;
 	while (start)
 	{
@@ -120,16 +121,6 @@ void Topological(Graph graph[], int side) {
 
 		edg* temp = graph[num].edg_start;
 		graph[num].edg_start = Delete_vect(graph, num);
-		/*while (temp)
-		{
-			if (!vist[temp->side])
-			{
-				vist[temp->side] = true;
-				queue[rear] = temp->side;
-				rear++;
-			}
-			temp = temp->next;
-		}*/
 		for (int i = 0; i < len; i++)
 		{
 			if (!vist[i] && !any_way_forward(graph, i))
@@ -137,6 +128,7 @@ void Topological(Graph graph[], int side) {
 				vist[i] = true;
 				queue[rear] = i;
 				rear++;
+				break;
 			}
 		}
 	}
@@ -168,7 +160,6 @@ int main() {
 	Print_graph(graph, line);
 	cout << endl << endl;
 	side = 0;
-	//bool vist[len] = { false };
 	cout << "topological sort :";
 	Topological(graph, side);
 	for (size_t i = 0; i < line; i++)
@@ -177,4 +168,3 @@ int main() {
 	}
 	return 0;
 }
-
