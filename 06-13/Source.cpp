@@ -36,7 +36,7 @@ void Free(edg* n) {
 	}
 }
 void Print_graph(Graph graph[], int num) {
-	cout << "\n\nmatrix : \n";
+	cout << "matrix : \n";
 	for (int i = 0; i < num; i++)
 	{
 		edg* start = graph[i].edg_start;
@@ -85,21 +85,6 @@ edg* Delete_vect(Graph graph[], int side) {
 
 
 void Topological(Graph graph[], int side) {
-	//bool visit[len] = { false };
-	//int queue[len] = { 0 };
-
-	/*edg* start = graph[side].edg_start;
-	vist[start->side] = true;
-	cout << side;
-
-	while (start)
-	{
-		if (!vist[start->side])
-		{
-			Topological(graph, start->side, vist);
-		}
-		start = start->next;
-	}*/
 	bool vist[len] = { false };
 	int queue[len] = { 0 };
 	int front = 0, rear = 0;
