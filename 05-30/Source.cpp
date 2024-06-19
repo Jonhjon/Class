@@ -15,9 +15,9 @@ bool weight_compare(edge e1, edge e2) {
 }
 
 int find(int parent[], int i) {
-	if (parent[i] != i)
-		parent[i] = find(parent, parent[i]);
-	return parent[i];
+	if (parent[i]== i)
+		return parent[i];
+	find(parent, parent[i]);
 }
 
 void Union(int parent[], int rank[], int x, int y) {
